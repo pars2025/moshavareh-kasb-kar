@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ربات مشاوره شغلی هوشمند</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <h1>🤖 ربات مشاوره شغلی هوشمند</h1>
+        <p>با تشخیص علاقه‌ها و مهارت‌های شما، بهترین مشاغل را پیشنهاد می‌دهیم!</p>
+    </header>
+
+    <!-- Welcome Message -->
+    <div id="welcomeMessage">
+        <h2>به ربات مشاوره شغلی خوش آمدید!</h2>
+        <p>در ادامه چند سوال ساده از شما می‌پرسم تا بتوانم بهترین مشاغل و مهارت‌های مناسب شما را پیدا کنم.</p>
+        <button onclick="startForm()">شروع کنید</button>
+    </div>
+
+    <!-- Form Steps -->
+    <div id="stepForm">
+        <div class="form-step active">
+            <h2>مرحله ۱: سن و منطقه</h2>
+            <label>سن:</label>
+            <input type="number" id="age" required min="14" max="99"><br>
+
+            <label>منطقه:</label>
+            <input type="text" id="location" required placeholder="شهر محل سکونت"><br>
+
+            <button onclick="nextStep()">بعدی</button>
+        </div>
+
+        <div class="form-step">
+            <h2>مرحله ۲: سابقه و علاقه</h2>
+            <label>سابقه کار دارید؟</label>
+            <select id="experience">
+                <option value="no">خیر</option>
+                <option value="yes">بله</option>
+            </select><br>
+
+            <label>چه نوع شغلی دوست دارید؟</label>
+            <select id="interest">
+                <option value="office">دفتری</option>
+                <option value="remote">دورکاری</option>
+                <option value="freelance">فریلنسری</option>
+                <option value="startup">استارت‌آپ</option>
+            </select><br>
+
+            <button onclick="prevStep()">قبلی</button>
+            <button onclick="nextStep()">بعدی</button>
+        </div>
+
+        <div class="form-step">
+            <h2>مرحله ۳: شخصیت شما</h2>
+            <p>چه کارهایی دوست دارید؟</p>
+            <label><input type="checkbox" id="tech"> کار با تکنولوژی</label><br>
+            <label><input type="checkbox" id="creative"> خلاقیت</label><br>
+            <label><input type="checkbox" id="people"> کار با افراد</label><br>
+            <label><input type="checkbox" id="numbers"> کار با اعداد</label><br>
+
+            <button onclick="prevStep()">قبلی</button>
+            <button onclick="submitForm()">مشاهده پیشنهادات</button>
+        </div>
+    </div>
+
+    <!-- Results -->
+    <div id="results">
+        <h2>پیشنهادات شغلی:</h2>
+        <ul id="jobList"></ul>
+
+        <h2>منابع یادگیری رایگان:</h2>
+        <ul id="resources"></ul>
+
+        <h2>رزومه ساده:</h2>
+        <pre id="resume"></pre>
+
+        <div class="actions">
+            <button onclick="printResume()">🖨️ چاپ رزومه</button>
+            <button onclick="downloadResume()">📥 دانلود رزومه</button>
+            <button onclick="restart()">🔄 شروع دوباره</button>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <footer class="about-section">
+        <h3>درباره ما</h3>
+        <p>این ربات یک ابزار آفلاین برای کمک به شما در پیدا کردن مشاغل مناسب و یادگیری مهارت‌های لازم است.</p>
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
