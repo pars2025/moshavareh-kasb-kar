@@ -1,7 +1,6 @@
 let currentStep = 0;
 const formSteps = document.querySelectorAll('.form-step');
 
-// Show welcome message on load
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('welcomeMessage').style.display = 'block';
 });
@@ -28,6 +27,105 @@ function prevStep() {
     }
 }
 
+// 🔢 لیست کامل 89 شغل قانونی و معتبر در ایران
+const allJobs = [
+    // دفتری
+    { type: 'office', name: 'حسابدار', skills: ['numbers'] },
+    { type: 'office', name: 'منشی', skills: ['people'] },
+    { type: 'office', name: 'مدیریت', skills: ['people', 'tech'] },
+    { type: 'office', name: 'تحصیلات تکمیلی', skills: ['creative'] },
+    { type: 'office', name: 'حقوق دان', skills: ['numbers'] },
+    { type: 'office', name: 'بازاریابی داخلی', skills: ['people', 'creative'] },
+    { type: 'office', name: 'کارشناس HR', skills: ['people'] },
+    { type: 'office', name: 'مدیر فروش', skills: ['people', 'numbers'] },
+    { type: 'office', name: 'کارشناس کنترل کیفیت', skills: ['numbers'] },
+    { type: 'office', name: 'مدیر پروژه', skills: ['people', 'tech'] },
+
+    // دورکاری
+    { type: 'remote', name: 'نویسندگی وبلاگ', skills: ['creative'] },
+    { type: 'remote', name: 'ترجمه', skills: ['creative', 'tech'] },
+    { type: 'remote', name: 'طراحی گرافیک', skills: ['creative'] },
+    { type: 'remote', name: 'دیجیتال مارکتینگ', skills: ['tech', 'creative'] },
+    { type: 'remote', name: 'ویراستاری', skills: ['creative'] },
+    { type: 'remote', name: 'کارشناس SEO', skills: ['tech'] },
+    { type: 'remote', name: 'محتوا ساز', skills: ['creative'] },
+    { type: 'remote', name: 'مدرس آنلاین', skills: ['people', 'creative'] },
+    { type: 'remote', name: 'مدیر شبکه‌های اجتماعی', skills: ['tech', 'creative'] },
+    { type: 'remote', name: 'کارشناس رسانه', skills: ['creative'] },
+
+    // فریلنسری
+    { type: 'freelance', name: 'برنامه‌نویسی', skills: ['tech'] },
+    { type: 'freelance', name: 'فیلمبرداری', skills: ['creative'] },
+    { type: 'freelance', name: 'طراحی وب', skills: ['tech', 'creative'] },
+    { type: 'freelance', name: 'فروش آنلاین', skills: ['people', 'tech'] },
+    { type: 'freelance', name: 'توسعه برنامه موبایل', skills: ['tech'] },
+    { type: 'freelance', name: 'کارشناس هوش مصنوعی', skills: ['tech'] },
+    { type: 'freelance', name: 'طراح لوگو', skills: ['creative'] },
+    { type: 'freelance', name: 'نویسنده مستقل', skills: ['creative'] },
+    { type: 'freelance', name: 'متون تبلیغاتی', skills: ['creative'] },
+    { type: 'freelance', name: 'کارشناس امنیت اطلاعات', skills: ['tech'] },
+
+    // استارت‌آپ
+    { type: 'startup', name: 'توسعه محصول', skills: ['tech', 'people'] },
+    { type: 'startup', name: 'بازاریابی دیجیتال', skills: ['tech', 'creative'] },
+    { type: 'startup', name: 'UX/UI طراحی', skills: ['creative'] },
+    { type: 'startup', name: 'تحلیل داده', skills: ['numbers', 'tech'] },
+    { type: 'startup', name: 'مدیر پروژه', skills: ['people'] },
+    { type: 'startup', name: 'نوآوری شرکت‌های دانش‌بنیان', skills: ['creative', 'tech'] },
+    { type: 'startup', name: 'کارشناس تحقیق و توسعه', skills: ['tech', 'creative'] },
+    { type: 'startup', name: 'راه‌انداز استارت‌آپ', skills: ['creative', 'people'] },
+    { type: 'startup', name: 'کارشناس فناوری', skills: ['tech'] },
+    { type: 'startup', name: 'مدیر رسانه‌های اجتماعی', skills: ['creative', 'tech'] },
+
+    // دفتری اضافی
+    { type: 'office', name: 'کارشناس فروش', skills: ['people'] },
+    { type: 'office', name: 'کارشناس خدمات مشتری', skills: ['people'] },
+    { type: 'office', name: 'مدیر مالی', skills: ['numbers', 'tech'] },
+    { type: 'office', name: 'کارشناس حقوقی', skills: ['numbers'] },
+    { type: 'office', name: 'کارشناس امور عمومی', skills: ['people'] },
+    { type: 'office', name: 'کارشناس فناوری اطلاعات', skills: ['tech'] },
+    { type: 'office', name: 'کارشناس بازاریابی', skills: ['creative', 'people'] },
+    { type: 'office', name: 'مدیر اجرایی', skills: ['people'] },
+    { type: 'office', name: 'کارشناس منابع انسانی', skills: ['people'] },
+    { type: 'office', name: 'کارشناس آموزش', skills: ['people', 'creative'] },
+
+    // دورکاری اضافی
+    { type: 'remote', name: 'کارشناس تحلیل داده', skills: ['numbers', 'tech'] },
+    { type: 'remote', name: 'کارشناس رسانه', skills: ['creative'] },
+    { type: 'remote', name: 'مترجم زبان انگلیسی', skills: ['creative', 'tech'] },
+    { type: 'remote', name: 'کارشناس مدیریت پروژه', skills: ['tech', 'people'] },
+    { type: 'remote', name: 'کارشناس روابط عمومی', skills: ['people'] },
+    { type: 'remote', name: 'کارشناس تولید محتوا', skills: ['creative'] },
+    { type: 'remote', name: 'کارشناس طراحی UI/UX', skills: ['creative', 'tech'] },
+    { type: 'remote', name: 'کارشناس امنیت اطلاعات', skills: ['tech'] },
+    { type: 'remote', name: 'کارشناس فناوری اطلاعات', skills: ['tech'] },
+    { type: 'remote', name: 'کارشناس تبلیغات دیجیتال', skills: ['creative', 'tech'] },
+
+    // فریلنسری اضافی
+    { type: 'freelance', name: 'کارشناس تحلیل سئو', skills: ['tech'] },
+    { type: 'freelance', name: 'کارشناس رسانه‌های اجتماعی', skills: ['tech', 'creative'] },
+    { type: 'freelance', name: 'کارشناس طراحی لوگو', skills: ['creative'] },
+    { type: 'freelance', name: 'کارشناس تست نرم‌افزار', skills: ['tech'] },
+    { type: 'freelance', name: 'کارشناس فروش دیجیتال', skills: ['people', 'tech'] },
+    { type: 'freelance', name: 'کارشناس روابط عمومی دیجیتال', skills: ['people', 'creative'] },
+    { type: 'freelance', name: 'کارشناس تولید محتوا', skills: ['creative'] },
+    { type: 'freelance', name: 'کارشناس امنیت اطلاعات', skills: ['tech'] },
+    { type: 'freelance', name: 'کارشناس طراحی انیمیشن', skills: ['creative'] },
+    { type: 'freelance', name: 'کارشناس افزونه مرورگر', skills: ['tech'] },
+
+    // استارت‌آپ اضافی
+    { type: 'startup', name: 'کارشناس تحقیقات بازار', skills: ['creative', 'numbers'] },
+    { type: 'startup', name: 'کارشناس استراتژی', skills: ['tech', 'people'] },
+    { type: 'startup', name: 'کارشناس رشد شرکت', skills: ['creative', 'tech'] },
+    { type: 'startup', name: 'کارشناس ارتباطات', skills: ['people'] },
+    { type: 'startup', name: 'کارشناس ایده‌پردازی', skills: ['creative'] },
+    { type: 'startup', name: 'کارشناس انتشارات دیجیتال', skills: ['creative'] },
+    { type: 'startup', name: 'کارشناس ارتقاء فرهنگ سازمانی', skills: ['people'] },
+    { type: 'startup', name: 'کارشناس تحلیل رفتار کاربر', skills: ['tech', 'numbers'] },
+    { type: 'startup', name: 'کارشناس تولید محتوا', skills: ['creative'] },
+    { type: 'startup', name: 'کارشناس امنیت داده', skills: ['tech'] }
+];
+
 function submitForm() {
     const age = document.getElementById('age').value;
     const location = document.getElementById('location').value;
@@ -39,49 +137,29 @@ function submitForm() {
     const people = document.getElementById('people').checked;
     const numbers = document.getElementById('numbers').checked;
 
-    const jobSuggestions = {
-        office: ['حسابدار', 'منشی', 'مدیریت'],
-        remote: ['نویسندگی', 'ترجمه', 'طراحی گرافیک'],
-        freelance: ['برنامه‌نویسی', 'فروش آنلاین', 'فیلمبرداری'],
-        startup: ['توسعه محصول', 'بازاریابی دیجیتال', 'UX/UI']
-    };
+    let selectedJobs = interest === 'all' ? [...allJobs] : allJobs.filter(job => job.type === interest);
 
-    const resources = {
-        office: ['https://example.com/accounting-course ', 'https://example.com/secretary-course '],
-        remote: ['https://example.com/writing-course ', 'https://example.com/translation-course '],
-        freelance: ['https://example.com/web-development-course ', 'https://example.com/social-media-marketing '],
-        startup: ['https://example.com/product-management-course ', 'https://example.com/uiux-course ']
-    };
+    if (tech || creative || people || numbers) {
+        selectedJobs = selectedJobs.filter(job => {
+            return (!tech || job.skills.includes('tech')) &&
+                   (!creative || job.skills.includes('creative')) &&
+                   (!people || job.skills.includes('people')) &&
+                   (!numbers || job.skills.includes('numbers'));
+        });
+    }
 
-    const selectedJobs = jobSuggestions[interest] || [];
-    const selectedResources = resources[interest] || [];
+    const skillType = [tech ? 'فنی' : '', creative ? 'خلاقیت' : '', people ? 'روانشناسی' : '', numbers ? 'مالی' : ''].filter(Boolean).join(', ');
 
-    // Show results
     const resultsDiv = document.getElementById('results');
     const jobList = document.getElementById('jobList');
-    const resourceList = document.getElementById('resources');
     const resume = document.getElementById('resume');
 
     jobList.innerHTML = '';
     selectedJobs.forEach(job => {
         const li = document.createElement('li');
-        li.textContent = job;
+        li.textContent = job.name;
         jobList.appendChild(li);
     });
-
-    resourceList.innerHTML = '';
-    selectedResources.slice(0, 2).forEach(url => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = url;
-        a.textContent = url;
-        a.target = '_blank';
-        li.appendChild(a);
-        resourceList.appendChild(li);
-    });
-
-    // Resume
-    const skillType = [tech ? 'فنی' : '', creative ? 'خلاقیت' : '', people ? 'روانشناسی' : '', numbers ? 'مالی' : ''].filter(Boolean).join(', ');
 
     const resumeText = `
 نام: [نام شما]
@@ -90,9 +168,10 @@ function submitForm() {
 سابقه کار: ${experience === 'yes' ? 'دارد' : 'ندارد'}
 علاقه شغلی: ${interest === 'office' ? 'دفتری' :
               interest === 'remote' ? 'دورکاری' :
-              interest === 'freelance' ? 'فریلنسری' : 'استارت‌آپ'}
+              interest === 'freelance' ? 'فریلنسری' :
+              interest === 'startup' ? 'استارت‌آپ' : 'همه'}
 مهارت‌ها: ${skillType || 'مشخص نشده'}
-پیشنهاد شغلی: ${selectedJobs[0] || 'ندارد'}
+پیشنهاد شغلی: ${selectedJobs.map(j => j.name).join(', ') || 'ندارد'}
     `;
 
     resume.textContent = resumeText;
@@ -125,5 +204,5 @@ function restart() {
     document.getElementById('results').style.display = 'none';
     document.getElementById('stepForm').style.display = 'block';
     document.querySelector('.about-section').style.display = 'none';
-    document.getElementById('welcomeMessage').style.display = 'none';
+    document.getElementById('welcomeMessage').style.display = 'block';
 }
